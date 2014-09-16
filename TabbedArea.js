@@ -26,7 +26,8 @@ var TabbedArea = React.createClass({displayName: 'TabbedArea',
     bsStyle: React.PropTypes.oneOf(['tabs','pills']),
     animation: React.PropTypes.bool,
     panel: React.PropTypes.bool,
-    onSelect: React.PropTypes.func
+    onSelect: React.PropTypes.func,
+    title: React.PropTypes.renderable
   },
 
   getDefaultProps: function () {
@@ -81,6 +82,9 @@ var TabbedArea = React.createClass({displayName: 'TabbedArea',
     return (
       React.DOM.div( {className:"panel"}, 
         React.DOM.div( {className:"panel-heading"}, 
+          React.DOM.div( {className:"panel-title"}, 
+            this.props.title
+          ),
           nav
         ),
         React.DOM.div( {id:this.props.id, className:"tab-content", ref:"panes"}, 

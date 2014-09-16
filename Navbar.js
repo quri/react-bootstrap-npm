@@ -56,12 +56,12 @@ var Navbar = React.createClass({displayName: 'Navbar',
     }
 
     this.setState({
-      navOpen: !this.state.navOpen
+      navExpanded: !this.state.navExpanded
     });
   },
 
-  isNavOpen: function () {
-    return this.props.navOpen != null ? this.props.navOpen : this.state.navOpen;
+  isNavExpanded: function () {
+    return this.props.navExpanded != null ? this.props.navExpanded : this.state.navExpanded;
   },
 
   render: function () {
@@ -87,7 +87,7 @@ var Navbar = React.createClass({displayName: 'Navbar',
     return cloneWithProps(child, {
       navbar: true,
       collapsable: this.props.toggleNavKey != null && this.props.toggleNavKey === child.props.key,
-      expanded: this.props.toggleNavKey != null && this.props.toggleNavKey === child.props.key && this.isNavOpen(),
+      expanded: this.props.toggleNavKey != null && this.props.toggleNavKey === child.props.key && this.isNavExpanded(),
       key: child.props.key,
       ref: child.props.ref
     });
