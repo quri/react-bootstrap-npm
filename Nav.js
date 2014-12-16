@@ -14,9 +14,10 @@ var Nav = React.createClass({displayName: 'Nav',
   mixins: [BootstrapMixin, CollapsableMixin],
 
   propTypes: {
-    bsStyle: React.PropTypes.oneOf(['tabs','pills']),
+    bsStyle: React.PropTypes.oneOf(['tabs','pills', '']),
     stacked: React.PropTypes.bool,
     justified: React.PropTypes.bool,
+    panel: React.PropTypes.bool,
     onSelect: React.PropTypes.func,
     collapsable: React.PropTypes.bool,
     expanded: React.PropTypes.bool,
@@ -64,6 +65,7 @@ var Nav = React.createClass({displayName: 'Nav',
 
     classes['nav-stacked'] = this.props.stacked;
     classes['nav-justified'] = this.props.justified;
+    classes['panel-tabs'] = this.props.panel;
     classes['navbar-nav'] = this.props.navbar;
     classes['pull-right'] = this.props.pullRight;
     classes['navbar-right'] = this.props.right;

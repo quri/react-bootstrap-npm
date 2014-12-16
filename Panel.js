@@ -124,8 +124,15 @@ var Panel = React.createClass({displayName: 'Panel',
 
   renderCollapsableTitle: function (header) {
     return (
-      React.createElement("h4", {className: "panel-title"}, 
-        this.renderAnchor(header)
+      React.createElement("a", {
+        href: '#' + (this.props.id || ''), 
+        className: this.isExpanded() ? null : 'collapsed', 
+        onClick: this.handleSelect}, 
+        React.createElement("div", {className: "accordion-toggle-icon"}, 
+          React.createElement("i", {className: "fa fa-minus-square-o"}), 
+          React.createElement("i", {className: "fa fa-plus-square-o"})
+        ), 
+        header
       )
     );
   },

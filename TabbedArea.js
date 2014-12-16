@@ -24,13 +24,16 @@ var TabbedArea = React.createClass({displayName: 'TabbedArea',
   propTypes: {
     bsStyle: React.PropTypes.oneOf(['tabs','pills']),
     animation: React.PropTypes.bool,
-    onSelect: React.PropTypes.func
+    panel: React.PropTypes.bool,
+    onSelect: React.PropTypes.func,
+    title: React.PropTypes.renderable
   },
 
   getDefaultProps: function () {
     return {
-      bsStyle: "tabs",
-      animation: true
+      animation: true,
+      panel: false,
+      bsStyle: "tabs"
     };
   },
 
@@ -70,14 +73,19 @@ var TabbedArea = React.createClass({displayName: 'TabbedArea',
     }
 
     var nav = (
-      React.createElement(Nav, React.__spread({},  this.props, {activeKey: activeKey, onSelect: this.handleSelect, ref: "tabs"}), 
+      React.createElement(Nav, React.__spread({},  this.props, {activeKey: activeKey, onSelect: this.handleSelect, ref: "tabs", bsStyle: this.props.panel ? '' : 'tabs', panel: this.props.panel}), 
         ValidComponentChildren.map(this.props.children, renderTabIfSet, this)
       )
     );
 
     return (
-      React.createElement("div", null, 
-        nav, 
+      React.createElement("div", {className: "panel"}, 
+        React.createElement("div", {className: "panel-heading"}, 
+          React.createElement("div", {className: "panel-title"}, 
+            this.props.title
+          ), 
+          nav
+        ), 
         React.createElement("div", {id: this.props.id, className: "tab-content", ref: "panes"}, 
           ValidComponentChildren.map(this.props.children, this.renderPane)
         )

@@ -32,6 +32,9 @@ var PanelGroup = React.createClass({displayName: 'PanelGroup',
 
   render: function () {
     var classes = this.getBsClassSet();
+    classes['accordion'] = this.props.accordion;
+    classes['accordion-alt'] = this.props.accordion;
+
     return (
       React.createElement("div", React.__spread({},  this.props, {className: joinClasses(this.props.className, classSet(classes)), onSelect: null}), 
         ValidComponentChildren.map(this.props.children, this.renderPanel)
